@@ -137,7 +137,6 @@ function registerDevices() {
     forceDevices.forEach(element => {
       registerDevice({snr: element.split(':')[0], type: element.split(':')[1] ? element.split(':')[1] : 25 })
     })
-    client.publish('warema/bridge/state', 'online', {retain: true})
   } else {
     console.log('Scanning...')
     stickUsb.scanDevices({autoAssignBlinds: false});
@@ -243,6 +242,7 @@ client.on('connect', function (connack) {
     {},
     callback
   );
+  client.publish('warema/bridge/state', 'online', {retain: true})
 })
 
 client.on('error', function (error) {
