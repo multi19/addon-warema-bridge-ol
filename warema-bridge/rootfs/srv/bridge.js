@@ -141,7 +141,7 @@ function registerDevice(element) {
 function registerDevices() {
   if (forceDevices && forceDevices.length) {
     forceDevices.forEach(element => {
-      registerDevice({snr: element, type: 25})
+      registerDevice({snr: element.split(':')[0], type: element.split(':')[1] ? element.split(':')[1] : 25 })
     })
     client.publish('warema/bridge/state', 'online', {retain: true})
   } else {
