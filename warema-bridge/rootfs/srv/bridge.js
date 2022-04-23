@@ -20,7 +20,7 @@ var registered_shades = []
 var shade_position = []
 
 function registerDevice(element) {
-  snr = element.snr.replace(/^0+/, '')
+  snr = String(element.snr).replace(/^0+/, '')
   console.log('Found device of type "' + element.typeStr + '" with type #' + element.type)
   console.log('Registering ' + snr)
   var topic = 'homeassistant/cover/' + snr + '/' + snr + '/config'
