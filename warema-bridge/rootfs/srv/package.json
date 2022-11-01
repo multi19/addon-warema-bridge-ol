@@ -1,6 +1,6 @@
 {
     "dependencies": {
-        "mqtt": "^4.2.6",
-        "warema-wms-venetian-blinds": "2.0.1"
+        "mqtt": "^4.3.7",
+        "warema-wms-venetian-blinds": "2.0.4"
     }
 }
