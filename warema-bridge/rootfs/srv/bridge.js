@@ -235,13 +235,15 @@ client.on('connect', function (connack) {
   console.log('Connected to MQTT')
   client.subscribe('warema/#')
   client.subscribe('homeassistant/status')
-  stickUsb = new warema(settingsPar.wmsSerialPort,
-    settingsPar.wmsChannel,
-    settingsPar.wmsPanid,
-    settingsPar.wmsKey,
-    {},
-    callback
-  );
+  if (stickUsb == null) {
+    stickUsb = new warema(settingsPar.wmsSerialPort,
+      settingsPar.wmsChannel,
+      settingsPar.wmsPanid,
+      settingsPar.wmsKey,
+      {},
+      callback
+    );
+  }
   client.publish('warema/bridge/state', 'online', {retain: true})
 })
 
