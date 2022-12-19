@@ -129,7 +129,7 @@ function registerDevice(element) {
     registered_shades += snr
     client.publish(availability_topic, 'online', {retain: true})
   }
-  client.publish(topic, JSON.stringify(payload))
+  client.publish(topic, JSON.stringify(payload), {retain: true})
 }
 
 function registerDevices() {
@@ -156,8 +156,8 @@ function callback(err, msg) {
         break
       case 'wms-vb-rcv-weather-broadcast':
         if (registered_shades.includes(msg.payload.weather.snr)) {
-          client.publish('warema/' + msg.payload.weather.snr + '/illuminance/state', msg.payload.weather.lumen.toString())
-          client.publish('warema/' + msg.payload.weather.snr + '/temperature/state', msg.payload.weather.temp.toString())
+          client.publish('warema/' + msg.payload.weather.snr + '/illuminance/state', msg.payload.weather.lumen.toString(), {retain: true})
+          client.publish('warema/' + msg.payload.weather.snr + '/temperature/state', msg.payload.weather.temp.toString(), {retain: true})
         } else {
           var availability_topic = 'warema/' + msg.payload.weather.snr + '/availability'
           var payload = {
@@ -182,7 +182,7 @@ function callback(err, msg) {
             unique_id: msg.payload.weather.snr + '_illuminance',
             unit_of_measurement: 'lm',
           }
-          client.publish('homeassistant/sensor/' + msg.payload.weather.snr + '/illuminance/config', JSON.stringify(illuminance_payload))
+          client.publish('homeassistant/sensor/' + msg.payload.weather.snr + '/illuminance/config', JSON.stringify(illuminance_payload), {retain: true})
 
           var temperature_payload = {
             ...payload,
@@ -191,15 +191,15 @@ function callback(err, msg) {
             unique_id: msg.payload.weather.snr + '_temperature',
             unit_of_measurement: 'C',
           }
-          client.publish('homeassistant/sensor/' + msg.payload.weather.snr + '/temperature/config', JSON.stringify(temperature_payload))
+          client.publish('homeassistant/sensor/' + msg.payload.weather.snr + '/temperature/config', JSON.stringify(temperature_payload), {retain: true})
 
           client.publish(availability_topic, 'online', {retain: true})
           registered_shades += msg.payload.weather.snr
         }
         break
       case 'wms-vb-blind-position-update':
-        client.publish('warema/' + msg.payload.snr + '/position', msg.payload.position.toString())
-        client.publish('warema/' + msg.payload.snr + '/tilt', msg.payload.angle.toString())
+        client.publish('warema/' + msg.payload.snr + '/position', msg.payload.position.toString(), {retain: true})
+        client.publish('warema/' + msg.payload.snr + '/tilt', msg.payload.angle.toString(), {retain: true})
         shade_position[msg.payload.snr] = {
           position: msg.payload.position,
           angle: msg.payload.angle
