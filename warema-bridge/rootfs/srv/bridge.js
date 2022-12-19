@@ -152,7 +152,8 @@ function callback(err, msg) {
       case 'wms-vb-init-completion':
         console.log('Warema init completed')
         registerDevices()
-        stickUsb.setPosUpdInterval(30000);
+        stickUsb.setPosUpdInterval(10000);
+        stickUsb.setWatchMovingBlindsInterval(1000)
         break
       case 'wms-vb-rcv-weather-broadcast':
         if (registered_shades.includes(msg.payload.weather.snr)) {
