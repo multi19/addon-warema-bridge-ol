@@ -27,7 +27,7 @@ function registerDevice(element) {
   var availability_topic = 'warema/' + snr + '/availability'
 
   var base_payload = {
-    name: snr,
+    name: null,
     availability: [
       {topic: 'warema/bridge/state'},
       {topic: availability_topic}
@@ -162,7 +162,7 @@ function callback(err, msg) {
         } else {
           var availability_topic = 'warema/' + msg.payload.weather.snr + '/availability'
           var payload = {
-            name: msg.payload.weather.snr,
+            name: null,
             availability: [
               {topic: 'warema/bridge/state'},
               {topic: availability_topic}
