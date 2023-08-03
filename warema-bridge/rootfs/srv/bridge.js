@@ -181,7 +181,7 @@ function callback(err, msg) {
             state_topic: 'warema/' + msg.payload.weather.snr + '/illuminance/state',
             device_class: 'illuminance',
             unique_id: msg.payload.weather.snr + '_illuminance',
-            unit_of_measurement: 'lm',
+            unit_of_measurement: 'lx',
           }
           client.publish('homeassistant/sensor/' + msg.payload.weather.snr + '/illuminance/config', JSON.stringify(illuminance_payload), {retain: true})
 
@@ -190,7 +190,7 @@ function callback(err, msg) {
             state_topic: 'warema/' + msg.payload.weather.snr + '/temperature/state',
             device_class: 'temperature',
             unique_id: msg.payload.weather.snr + '_temperature',
-            unit_of_measurement: 'C',
+            unit_of_measurement: '°C',
           }
           client.publish('homeassistant/sensor/' + msg.payload.weather.snr + '/temperature/config', JSON.stringify(temperature_payload), {retain: true})
 
