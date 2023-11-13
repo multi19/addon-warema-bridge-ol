@@ -1,4 +1,4 @@
-REGISTRY := ghcr.io/ol-iver
+REGISTRY := ghcr.io/multi19
 VERSION	 := v$(shell date +'%Y%m%d')-$(shell git rev-parse --short HEAD)
 
 
