@@ -240,10 +240,10 @@ function callback(err, msg) {
 }
 
 var client = mqtt.connect(
-  "mqtt://core-mosquitto:1883",
+  process.env.MQTT_SERVER,
   {
-    username: "mqtt_benutzer",
-    password: "geheim",
+    username: process.env.MQTT_USER,
+    password: process.env.MQTT_PASSWORD,
     will: {
       topic: 'warema/bridge/state',
       payload: 'offline',
