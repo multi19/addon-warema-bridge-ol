@@ -1,6 +1,6 @@
 {
   "name": "Warema Bridge (AMK)",
-  "version": "0.0.12",
+  "version": "0.0.13",
   "slug": "warema-bridge",
   "description": "Control your Warema WMS system",
   "arch": ["aarch64", "amd64", "armv7", "i386"],
