@@ -235,6 +235,7 @@ var stickUsb
 
 client.on('connect', function (connack) {
   console.log('Connected to MQTT')
+  console.log('Connected as user: ' + process.env.MQTT_USER)
   client.subscribe('warema/#')
   client.subscribe('homeassistant/status')
   if (stickUsb == null) {
