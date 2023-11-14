@@ -151,7 +151,7 @@ function callback(err, msg) {
   if(msg) {
     switch (msg.topic) {
       case 'wms-vb-init-completion':
-        console.log('Warema init completed')
+        console.log('Warema init completed (AMK)')
         registerDevices()
         stickUsb.setPosUpdInterval(10000);
         stickUsb.setWatchMovingBlindsInterval(1000)
@@ -160,6 +160,8 @@ function callback(err, msg) {
         if (registered_shades.includes(msg.payload.weather.snr)) {
           client.publish('warema/' + msg.payload.weather.snr + '/illuminance/state', msg.payload.weather.lumen.toString(), {retain: true})
           client.publish('warema/' + msg.payload.weather.snr + '/temperature/state', msg.payload.weather.temp.toString(), {retain: true})
+          client.publish('warema/' + msg.payload.weather.snr + '/wind/state', msg.payload.weather.wind.toString(), {retain: true})
+          client.publish('warema/' + msg.payload.weather.snr + '/rain/state', msg.payload.weather.rain.toString(), {retain: true})            
         } else {
           var availability_topic = 'warema/' + msg.payload.weather.snr + '/availability'
           var payload = {
