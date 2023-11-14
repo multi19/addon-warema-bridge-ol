@@ -197,6 +197,25 @@ function callback(err, msg) {
           }
           client.publish('homeassistant/sensor/' + msg.payload.weather.snr + '/temperature/config', JSON.stringify(temperature_payload), {retain: true})
 
+          var wind_payload = {
+            ...payload,
+            state_topic: 'warema/' + msg.payload.weather.snr + '/wind/state',
+            device_class: 'wind',
+            unique_id: msg.payload.weather.snr + '_wind',
+            unit_of_measurement: 'm/s',
+          }
+          client.publish('homeassistant/sensor/' + msg.payload.weather.snr + '/wind/config', JSON.stringify(wind_payload), {retain: true})
+          
+          var rain_payload = {
+            ...payload,
+            state_topic: 'warema/' + msg.payload.weather.snr + '/rain/state',
+            device_class: 'rain',
+            unique_id: msg.payload.weather.snr + '_rain',
+            unit_of_measurement: '?',
+          }
+          client.publish('homeassistant/sensor/' + msg.payload.weather.snr + '/rain/config', JSON.stringify(rain_payload), {retain: true})
+                    
+
           client.publish(availability_topic, 'online', {retain: true})
           registered_shades += msg.payload.weather.snr
         }

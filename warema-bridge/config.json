@@ -1,10 +1,10 @@
 {
   "name": "Warema Bridge (AMK)",
-  "version": "0.0.14",
+  "version": "0.0.15",
   "slug": "warema-bridge",
   "description": "Control your Warema WMS system",
   "arch": ["aarch64", "amd64", "armv7", "i386"],
-  "startup": "services",
+  "startup": "application",
   "url": "https://github.com/multi19/addon-warema-bridge",
   "boot": "auto",
   "hassio_api": true,
