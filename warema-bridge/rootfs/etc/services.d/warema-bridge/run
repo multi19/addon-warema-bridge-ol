@@ -26,13 +26,13 @@ else
         if [ $(bashio::services mqtt "ssl") = true ]; then
             MQTT_PREFIX="mqtts://"
         fi
-        export MQTT_SERVER="${MQTT_PREFIX}$(bashio::services mqtt "host"):$(bashio::services mqtt "port")"
+        export MQTT_SERVER="${MQTT_PREFIX}core-mosquitto:1883"
         bashio::log.info "Configuring '${MQTT_SERVER}' mqtt server (AMK)"
     fi
     if ! bashio::config.exists 'mqtt.user'; then
         bashio::log.info "MQTT credentials not configured, attempting auto-discovery...(AMK)"
-        export MQTT_USER=$(bashio::services mqtt "username")
-        export MQTT_PASSWORD=$(bashio::services mqtt "password")
+        export MQTT_USER="mqtt_benutzer"
+        export MQTT_PASSWORD="geheim"
         bashio::log.info "Configuring '${MQTT_USER}' mqtt user (AMK)"
     fi
 fi
